@@ -8,10 +8,9 @@ import fs from "fs";
 import path from "path";
 import multer from "multer";
 
-// const URL =
-//   "mongodb://admin:nanurahman@cluster0-shard-00-00.sbgae.mongodb.net:27017,cluster0-shard-00-01.sbgae.mongodb.net:27017,cluster0-shard-00-02.sbgae.mongodb.net:27017/binarAcademy?ssl=true&replicaSet=atlas-a8dmk7-shard-0&authSource=admin&retryWrites=true&w=majority";
-const PORT = 5000
-const URL = "mongodb://localhost:27017";
+const URL =
+  "mongodb://admin:nanurahman@cluster0-shard-00-00.sbgae.mongodb.net:27017,cluster0-shard-00-01.sbgae.mongodb.net:27017,cluster0-shard-00-02.sbgae.mongodb.net:27017/binarAcademy?ssl=true&replicaSet=atlas-a8dmk7-shard-0&authSource=admin&retryWrites=true&w=majority";
+const PORT = 8080
 // const URL = "mongodb://localhost:27017";
 mongoose.connect(
   URL,{
