@@ -1,4 +1,5 @@
 import Car from "./../Models/carModel.js";
+import upload from "../App.js";
 
 export const getCars = async (req, res) => {
   try {
@@ -21,15 +22,25 @@ export const getCarsById = async (req, res) => {
   }
 };
 export const createCars = async (req, res) => {
-  const car = new Car(req.body);
-  try {
-    const insertedCars = await car.save();
-    res.status(200).json(insertedCars);
-  } catch (error) {
-    res.status(404).json({
-      massage: error.massage,
-    });
-  }
+  upload(req, res, (err) => {
+    if(err){
+      console.log(err)
+    }else{
+      const newCar = new Car({
+        name : req.body.name,
+        size : req.body.size,
+        type : req.body.type,
+        price : req.body.price,
+        image : {
+          name : req.file.filename,
+          contentType : "image/png"
+        }
+      })
+      newCar.save()
+      .then(() => res.send("Success"))
+      .catch(err => console.log(err))
+    }
+  })
 };
 export const updateCars = async (req, res) => {
   try {

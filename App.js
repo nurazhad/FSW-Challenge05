@@ -6,11 +6,13 @@ import cors from "cors"
 import bodyParser from "body-parser";
 import fs from "fs";
 import path from "path";
+import multer from "multer";
 
-const URL =
-  "mongodb://admin:FKRv1ILQOoBGwSoY@cluster0-shard-00-00.0q7qb.mongodb.net:27017,cluster0-shard-00-01.0q7qb.mongodb.net:27017,cluster0-shard-00-02.0q7qb.mongodb.net:27017/Challenge05?ssl=true&replicaSet=atlas-73m3dy-shard-0&authSource=admin&retryWrites=true&w=majority";
+// const URL =
+//   "mongodb://admin:nanurahman@cluster0-shard-00-00.sbgae.mongodb.net:27017,cluster0-shard-00-01.sbgae.mongodb.net:27017,cluster0-shard-00-02.sbgae.mongodb.net:27017/binarAcademy?ssl=true&replicaSet=atlas-a8dmk7-shard-0&authSource=admin&retryWrites=true&w=majority";
 const PORT = 5000
-
+const URL = "mongodb://localhost:27017";
+// const URL = "mongodb://localhost:27017";
 mongoose.connect(
   URL,{
     useNewUrlParser: true,
@@ -26,3 +28,16 @@ app.use(express.json());
 app.use(carRoute);
 
 app.listen(PORT, () => console.log("Server Running"));
+
+const Storage = multer.diskStorage({
+  destination:'./Uploads',
+  filename:(req, file, cb) => {
+    cb(null, file.originalname);
+  }, 
+})
+
+const upload = multer({
+  storage:Storage
+}).single('image')
+
+export default upload
