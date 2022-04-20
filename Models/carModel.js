@@ -9,12 +9,16 @@ const Car = mongoose.Schema({
     type: String,
     required: true,
   },
+  type:{
+    type: String,
+    required: true
+  },
   price: {
     type: String,
     required: true,
   },
   image: {
-    data: Buffer,
+    name: String,
     contentType: String,
   },
 });
